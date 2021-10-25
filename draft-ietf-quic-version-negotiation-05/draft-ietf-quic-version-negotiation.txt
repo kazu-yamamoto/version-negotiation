@@ -293,7 +293,7 @@ Table of Contents
    Clients will ignore a Version Negotiation packet if it contains the
    original version attempted by the client.  The client also ignores a
    Version Negotiation that contains incorrect connection ID fields; see
-   Section 6 of [RFC8999].
+   Section 6 of [INV].
 
    Upon receiving the VN packet, the client will search for a version it
    supports in the list provided by the server.  If it doesn't find one,
@@ -540,10 +540,8 @@ Table of Contents
 13.  Normative References
 
    [INV]      Thomson, M., "Version-Independent Properties of QUIC",
-              Work in Progress, Internet-Draft, draft-ietf-quic-
-              invariants-13, 14 January 2021,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-quic-
-              invariants-13>.
+              RFC 8999, DOI 10.17487/RFC8999, May 2021,
+              <https://datatracker.ietf.org/doc/html/rfc8999>.
 
    [QUIC]     Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", RFC 9000,
@@ -558,10 +556,6 @@ Table of Contents
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://datatracker.ietf.org/doc/html/rfc8174>.
-
-   [RFC8999]  Thomson, M., "Version-Independent Properties of QUIC",
-              RFC 8999, DOI 10.17487/RFC8999, May 2021,
-              <https://datatracker.ietf.org/doc/html/rfc8999>.
 
 Acknowledgments
 

@@ -1225,10 +1225,10 @@ the negotiation can take place without incurring an extra round trip.<a href="#s
       </h2>
 <p id="section-1-1">The version-invariant properties of QUIC <span>[<a href="#INV" class="xref">INV</a>]</span>
 define a version negotiation (VN) packet but do not specify how an endpoint
-reacts when it receives one. QUIC version 1 <span>[<a href="#QUIC" class="xref">QUIC</a>]</span>
-allows the server to use a VN packet to indicate that the version the client
-offered is unacceptable, but doesn't allow the client to safely make use of
-that information to create a new connection with a mutually supported version.<a href="#section-1-1" class="pilcrow">¶</a></p>
+reacts when it receives one. QUIC version 1 <span>[<a href="#QUIC" class="xref">QUIC</a>]</span> allows the server
+to use a VN packet to indicate that the version the client offered is
+unacceptable, but doesn't allow the client to safely make use of that
+information to create a new connection with a mutually supported version.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">With proper safety mechanisms in place, the VN packet can be part of a
 mechanism to allow two QUIC implementations to negotiate between two totally
 disjoint versions of QUIC. This document specifies version negotiation using VN
@@ -1421,7 +1421,7 @@ that follows.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
 <p id="section-4.2-1">The server starts incompatible version negotiation by sending a Version
 Negotiation packet. This packet SHALL include each entry from the server's set
 of Offered Versions (see <a href="#server-fleet" class="xref">Section 2</a>) in a Supported Version field. The
-server MAY add reserved versions (as defined in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-transport-34#section-6.3" class="relref">Section 6.3</a> of [<a href="#QUIC" class="xref">QUIC</a>]</span>) in
+server MAY add reserved versions (as defined in <span><a href="https://rfc-editor.org/rfc/rfc9000#section-6.3" class="relref">Section 6.3</a> of [<a href="#QUIC" class="xref">QUIC</a>]</span>) in
 Supported Version fields.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
 <p id="section-4.2-2">Clients will ignore a Version Negotiation packet if it contains the original
 version attempted by the client.  The client also ignores a Version Negotiation
@@ -1755,7 +1755,7 @@ above.<a href="#section-12.2-3" class="pilcrow">¶</a></p>
 <dd class="break"></dd>
 <dt id="QUIC">[QUIC]</dt>
       <dd>
-<span class="refAuthor">Iyengar, J.</span> and <span class="refAuthor">M. Thomson</span>, <span class="refTitle">"QUIC: A UDP-Based Multiplexed and Secure Transport"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-transport-34</span>, <time datetime="2021-01-14" class="refDate">14 January 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-transport-34">https://datatracker.ietf.org/doc/html/draft-ietf-quic-transport-34</a>&gt;</span>. </dd>
+<span class="refAuthor">Iyengar, J., Ed.</span> and <span class="refAuthor">M. Thomson, Ed.</span>, <span class="refTitle">"QUIC: A UDP-Based Multiplexed and Secure Transport"</span>, <span class="seriesInfo">RFC 9000</span>, <span class="seriesInfo">DOI 10.17487/RFC9000</span>, <time datetime="2021-05" class="refDate">May 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc9000">https://datatracker.ietf.org/doc/html/rfc9000</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
       <dd>

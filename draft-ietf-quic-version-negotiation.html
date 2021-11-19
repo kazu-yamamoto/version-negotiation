@@ -1548,9 +1548,9 @@ never be selected when choosing a version to use.<a href="#section-5-7" class="p
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-version-downgrade-preventio" class="section-name selfRef">Version Downgrade Prevention</a>
       </h2>
 <p id="section-6-1">Clients MUST ignore any received Version Negotiation packets that contain the
-version that they initially attempted. Once a client has reacted to a Version
-Negotiation packet, it MUST drop all subsequent Version Negotiation packets on
-that connection.<a href="#section-6-1" class="pilcrow">¶</a></p>
+version that they initially attempted. A client that makes a connection attempt
+based on information received from a Version Negotiation packet MUST ignore any
+Version Negotiation packets it receives in response to that connection attempt.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <p id="section-6-2">Both endpoints MUST parse their peer's Version Information during the
 handshake. If parsing the Version Information failed (for example, if it is too
 short or if its length is not divisible by four), then the endpoint MUST close

@@ -15,11 +15,11 @@ allows a client and server to select a mutually supported version. Optionally,
 if the original and negotiated version share a compatible first flight format,
 the negotiation can take place without incurring an extra round trip. 
     " name="description">
-<meta content="xml2rfc 3.10.0" name="generator">
+<meta content="xml2rfc 3.11.1" name="generator">
 <meta content="Internet-Draft" name="keyword">
 <meta content="draft-ietf-quic-version-negotiation-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.10.0
+  xml2rfc 3.11.1
     Python 3.9.5
     appdirs 1.4.4
     ConfigArgParse 1.3
@@ -203,7 +203,8 @@ the negotiation can take place without incurring an extra round trip.
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-html {
+:root {
+  color-scheme: light dark;
   --background-color: #fff;
   --text-color: #222;
   --title-color: #191919;
@@ -213,20 +214,8 @@ html {
   --pilcrow-weak: #ddd;
   --pilcrow-strong: #bbb;
   --small-font-size: 14.5px;
+  --font-mono: 'Oxygen Mono', monospace;
   scrollbar-color: #bbb #eee;
-}
-@media (prefers-color-scheme: dark) {
-html {
-  --background-color: #121212;
-  --text-color: #f0f0f0;
-  --title-color: #fff;
-  --link-color: #4da4f0;
-  --highlight-color: #282828;
-  --line-color: #444;
-  --pilcrow-weak: #444;
-  --pilcrow-strong: #666;
-  scrollbar-color: #777 #333;
-}
 }
 body {
   max-width: 600px;
@@ -319,6 +308,10 @@ div {
 }
 svg {
   display: block;
+}
+/* font-family isn't space-separated, but =~ will have to do */
+svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
+  font-family: var(--font-mono);
 }
 .alignCenter.art-text {
   background-color: var(--highlight-color);
@@ -414,7 +407,7 @@ a.xref {
 /* Figures */
 tt, code, pre {
   background-color: var(--highlight-color);
-  font: 14px/22px 'Oxygen Mono', monospace;
+  font: 14px/22px var(--font-mono);
 }
 tt, code {
   /* changing the font for inline elements leads to different ascender
@@ -446,17 +439,22 @@ figcaption, caption {
   text-align: left;
 }
 @media screen {
-  pre {
+  pre, svg {
     display: inline-block;
     overflow-x: auto;
+  }
+  pre {
     max-width: 100%;
     width: calc(100% - 22px - 1em);
+  }
+  svg {
+    max-width: calc(100% - 22px - 1em);
   }
   figure pre {
     display: block;
     width: calc(100% - 25px);
   }
-  pre + .pilcrow {
+  pre + .pilcrow, svg + .pilcrow {
     display: inline-block;
     vertical-align: text-bottom;
     padding-bottom: 8px;
@@ -470,9 +468,6 @@ aside, blockquote {
   font-style: italic;
 }
 blockquote {
-  background-color: var(--highlight-color);
-  border: 1px solid var(--line-color);
-  border-radius: 3px;
   margin: 1em 0;
 }
 cite {
@@ -1015,6 +1010,34 @@ address div.right {
   font-weight: bold;
   font-size: 0.9em;
 }
+
+/* Dark mode. */
+@media (prefers-color-scheme: dark) {
+:root {
+  --background-color: #121212;
+  --text-color: #f0f0f0;
+  --title-color: #fff;
+  --link-color: #4da4f0;
+  --highlight-color: #282828;
+  --line-color: #444;
+  --pilcrow-weak: #444;
+  --pilcrow-strong: #666;
+  scrollbar-color: #777 #333;
+}
+/* Trick: a prefix match works because only black and white are allowed */
+svg [stroke="black"], svg [stroke^="#000"] {
+  stroke: var(--text-color);
+}
+svg [stroke="white"], svg [stroke^="#fff"] {
+  stroke: var(--background-color);
+}
+svg [fill="black"], svg [fill^="#000"], svg :not([fill]) {
+  fill: var(--text-color);
+}
+svg [stroke="fill"], svg [fill^="#fff"] {
+  fill: var(--background-color);
+}
+}
 </style>
 
 </head>
@@ -1023,11 +1046,11 @@ address div.right {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">QUIC Compatible VN</td>
-<td class="right">October 2021</td>
+<td class="right">November 2021</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Schinazi &amp; Rescorla</td>
-<td class="center">Expires 21 April 2022</td>
+<td class="center">Expires 23 May 2022</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1040,12 +1063,12 @@ address div.right {
 <dd class="internet-draft">draft-ietf-quic-version-negotiation-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2021-10-18" class="published">18 October 2021</time>
+<time datetime="2021-11-19" class="published">19 November 2021</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2022-04-21">21 April 2022</time></dd>
+<dd class="expires"><time datetime="2022-05-23">23 May 2022</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1099,7 +1122,7 @@ the negotiation can take place without incurring an extra round trip.<a href="#s
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 21 April 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 23 May 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1117,9 +1140,9 @@ the negotiation can take place without incurring an extra round trip.<a href="#s
             publication of this document. Please review these documents
             carefully, as they describe your rights and restrictions with
             respect to this document. Code Components extracted from this
-            document must include Simplified BSD License text as described in
+            document must include Revised BSD License text as described in
             Section 4.e of the Trust Legal Provisions and are provided without
-            warranty as described in the Simplified BSD License.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
+            warranty as described in the Revised BSD License.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="toc">
@@ -1206,12 +1229,12 @@ the negotiation can take place without incurring an extra round trip.<a href="#s
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">The version-invariant properties of QUIC <span>[<a href="#INV" class="xref">INV</a>]</span>
-define a version negotiation (VN) packet but do not specify how an endpoint
-reacts when it receives one. QUIC version 1 <span>[<a href="#QUIC" class="xref">QUIC</a>]</span>
-allows the server to use a VN packet to indicate that the version the client
-offered is unacceptable, but doesn't allow the client to safely make use of
-that information to create a new connection with a mutually supported version.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-1">The version-invariant properties of QUIC <span>[<a href="#INV" class="xref">INV</a>]</span> define a version negotiation
+(VN) packet but do not specify how an endpoint reacts when it receives one.
+QUIC version 1 <span>[<a href="#QUIC" class="xref">QUIC</a>]</span> allows the server to use a VN packet to indicate that
+the version the client offered is unacceptable, but doesn't allow the client to
+safely make use of that information to create a new connection with a mutually
+supported version.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">With proper safety mechanisms in place, the VN packet can be part of a
 mechanism to allow two QUIC implementations to negotiate between two totally
 disjoint versions of QUIC. This document specifies version negotiation using VN
@@ -1404,11 +1427,11 @@ that follows.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
 <p id="section-4.2-1">The server starts incompatible version negotiation by sending a Version
 Negotiation packet. This packet SHALL include each entry from the server's set
 of Offered Versions (see <a href="#server-fleet" class="xref">Section 2</a>) in a Supported Version field. The
-server MAY add reserved versions (as defined in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-transport-34#section-6.3" class="relref">Section 6.3</a> of [<a href="#QUIC" class="xref">QUIC</a>]</span>) in
+server MAY add reserved versions (as defined in <span><a href="https://rfc-editor.org/rfc/rfc9000#section-6.3" class="relref">Section 6.3</a> of [<a href="#QUIC" class="xref">QUIC</a>]</span>) in
 Supported Version fields.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
 <p id="section-4.2-2">Clients will ignore a Version Negotiation packet if it contains the original
-version attempted by the client.  The client also ignores a Version Negotiation
-that contains incorrect connection ID fields; see <span><a href="https://rfc-editor.org/rfc/rfc8999#section-6" class="relref">Section 6</a> of [<a href="#RFC8999" class="xref">RFC8999</a>]</span>.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+version attempted by the client. The client also ignores a Version Negotiation
+that contains incorrect connection ID fields; see <span><a href="https://rfc-editor.org/rfc/rfc8999#section-6" class="relref">Section 6</a> of [<a href="#INV" class="xref">INV</a>]</span>.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
 <p id="section-4.2-3">Upon receiving the VN packet, the client will search for a version it supports
 in the list provided by the server. If it doesn't find one, it aborts the
 connection attempt. Otherwise, it selects a mutually supported version and
@@ -1460,7 +1483,7 @@ server.<a href="#section-4.3-4" class="pilcrow">¶</a></p>
       </h2>
 <p id="section-5-1">During the handshake, endpoints will exchange Version Information, which is a
 blob of data that is defined below. In QUIC version 1, the Version Information
-is transmitted using a new transport parameter, <code>version_information</code>. The
+is transmitted using a new transport parameter, version_information. The
 contents of Version Information are shown below (using the notation from the
 "Notational Conventions" section of <span>[<a href="#QUIC" class="xref">QUIC</a>]</span>):<a href="#section-5-1" class="pilcrow">¶</a></p>
 <span id="name-version-information-format"></span><div id="fig-vi-format">
@@ -1488,15 +1511,15 @@ header that carries this data.<a href="#section-5-4.2.1" class="pilcrow">¶</a><
 </dd>
       <dd class="break"></dd>
 </dl>
-<p id="section-5-5">The contents of the <code>Other Versions</code> field depends on whether it is sent by the
+<p id="section-5-5">The contents of the Other Versions field depends on whether it is sent by the
 client or by the server.<a href="#section-5-5" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5-6">
         <dt id="section-5-6.1">
 Client-Sent Other Versions:  </dt>
         <dd style="margin-left: 1.5em" id="section-5-6.2">
-          <p id="section-5-6.2.1">When sent by a client, the <code>Other Versions</code> field lists all the versions that
+          <p id="section-5-6.2.1">When sent by a client, the Other Versions field lists all the versions that
 this first flight is compatible with, ordered by descending preference. Note
-that the version in the <code>Chosen Version</code> field MUST be included in this list to
+that the version in the Chosen Version field MUST be included in this list to
 allow the client to communicate the chosen version's preference. Note that this
 preference is only advisory, servers MAY choose to use their own preference
 instead.<a href="#section-5-6.2.1" class="pilcrow">¶</a></p>
@@ -1505,13 +1528,16 @@ instead.<a href="#section-5-6.2.1" class="pilcrow">¶</a></p>
 <dt id="section-5-6.3">
 Server-Sent Other Versions:  </dt>
         <dd style="margin-left: 1.5em" id="section-5-6.4">
-          <p id="section-5-6.4.1">When sent by a server, the <code>Other Versions</code> field lists all the
-Fully-Deployed Versions of this server deployment, see <a href="#server-fleet" class="xref">Section 2</a>.<a href="#section-5-6.4.1" class="pilcrow">¶</a></p>
+          <p id="section-5-6.4.1">When sent by a server, the Other Versions field lists all the
+Fully-Deployed Versions of this server deployment, see <a href="#server-fleet" class="xref">Section 2</a>. Note
+that the version in the Chosen Version field is not necessarily included in
+this list, because the server operator could be in the process of removing
+support for this version. For the same reason, this field MAY be empty.<a href="#section-5-6.4.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
 <p id="section-5-7">Clients and servers MAY both include versions following the pattern
-<code>0x?a?a?a?a</code> in their <code>Other Versions</code> list. Those versions are reserved to
+0x?a?a?a?a in their Other Versions list. Those versions are reserved to
 exercise version negotiation (see the Versions section of <span>[<a href="#QUIC" class="xref">QUIC</a>]</span>), and will
 never be selected when choosing a version to use.<a href="#section-5-7" class="pilcrow">¶</a></p>
 </section>
@@ -1529,31 +1555,31 @@ that connection.<a href="#section-6-1" class="pilcrow">¶</a></p>
 handshake. If parsing the Version Information failed (for example, if it is too
 short or if its length is not divisible by four), then the endpoint MUST close
 the connection; if the connection was using QUIC version 1, that connection
-closure MUST use a transport error of type <code>TRANSPORT_PARAMETER_ERROR</code>.<a href="#section-6-2" class="pilcrow">¶</a></p>
+closure MUST use a transport error of type TRANSPORT_PARAMETER_ERROR.<a href="#section-6-2" class="pilcrow">¶</a></p>
 <p id="section-6-3">If the Version Information was missing, the endpoints MAY complete the
 handshake if they have reason to believe the peer might not support this
 extension. However, if a client has reacted to a Version Negotiation packet and
 the Version Information was missing, the client MUST close the connection; if
 the connection was using QUIC version 1, that connection closure MUST use a
-transport error of type <code>VERSION_NEGOTIATION_ERROR</code>.<a href="#section-6-3" class="pilcrow">¶</a></p>
+transport error of type VERSION_NEGOTIATION_ERROR.<a href="#section-6-3" class="pilcrow">¶</a></p>
 <p id="section-6-4">If the client received and acted on a Version Negotiation packet, the client MUST
-validate the server's <code>Other Versions</code> field.  The <code>Other Versions</code> field is
+validate the server's Other Versions field.  The Other Versions field is
 validated by confirming that the client would have attempted the same version
 with knowledge of the versions the server supports. That is, the client would
 have selected the same version if it received a Version Negotiation packet that
-listed the versions in the server's <code>Other Versions</code> field, plus the negotiated
+listed the versions in the server's Other Versions field, plus the negotiated
 version. If the client would have selected a different version, the client MUST
 close the connection; if the connection was using QUIC version 1, that
 connection closure MUST use a transport error of type
-<code>VERSION_NEGOTIATION_ERROR</code>. This connection closure prevents an attacker from
+VERSION_NEGOTIATION_ERROR. This connection closure prevents an attacker from
 being able to use forged Version Negotiation packets to force a version
 downgrade.<a href="#section-6-4" class="pilcrow">¶</a></p>
-<p id="section-6-5">This validation of <code>Other Versions</code> is not sufficient to prevent downgrade.
+<p id="section-6-5">This validation of Other Versions is not sufficient to prevent downgrade.
 Downgrade prevention also depends on the client ignoring Version Negotiation
 packets that contain the original version; see <a href="#incompat-vn" class="xref">Section 4.2</a>.<a href="#section-6-5" class="pilcrow">¶</a></p>
 <p id="section-6-6">After the process of version negotiation in this document completes, the
 version in use for the connection is the version that the server sent in the
-<code>Chosen Version</code> field of its Version Information. That remains true even if
+Chosen Version field of its Version Information. That remains true even if
 other versions were used in the Version field of long headers at any point in
 the lifetime of the connection; endpoints MUST NOT change the version that they
 consider to be in use based on the Version field of long headers as that field
@@ -1734,23 +1760,19 @@ above.<a href="#section-12.2-3" class="pilcrow">¶</a></p>
 <dl class="references">
 <dt id="INV">[INV]</dt>
       <dd>
-<span class="refAuthor">Thomson, M.</span>, <span class="refTitle">"Version-Independent Properties of QUIC"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-invariants-13</span>, <time datetime="2021-01-14" class="refDate">14 January 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-invariants-13">https://datatracker.ietf.org/doc/html/draft-ietf-quic-invariants-13</a>&gt;</span>. </dd>
+<span class="refAuthor">Thomson, M.</span>, <span class="refTitle">"Version-Independent Properties of QUIC"</span>, <span class="seriesInfo">RFC 8999</span>, <span class="seriesInfo">DOI 10.17487/RFC8999</span>, <time datetime="2021-05" class="refDate">May 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8999">https://www.rfc-editor.org/rfc/rfc8999</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="QUIC">[QUIC]</dt>
       <dd>
-<span class="refAuthor">Iyengar, J.</span> and <span class="refAuthor">M. Thomson</span>, <span class="refTitle">"QUIC: A UDP-Based Multiplexed and Secure Transport"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-transport-34</span>, <time datetime="2021-01-14" class="refDate">14 January 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-transport-34">https://datatracker.ietf.org/doc/html/draft-ietf-quic-transport-34</a>&gt;</span>. </dd>
+<span class="refAuthor">Iyengar, J., Ed.</span> and <span class="refAuthor">M. Thomson, Ed.</span>, <span class="refTitle">"QUIC: A UDP-Based Multiplexed and Secure Transport"</span>, <span class="seriesInfo">RFC 9000</span>, <span class="seriesInfo">DOI 10.17487/RFC9000</span>, <time datetime="2021-05" class="refDate">May 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9000">https://www.rfc-editor.org/rfc/rfc9000</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
       <dd>
-<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>&gt;</span>. </dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
-      <dd>
-<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc8174">https://datatracker.ietf.org/doc/html/rfc8174</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC8999">[RFC8999]</dt>
     <dd>
-<span class="refAuthor">Thomson, M.</span>, <span class="refTitle">"Version-Independent Properties of QUIC"</span>, <span class="seriesInfo">RFC 8999</span>, <span class="seriesInfo">DOI 10.17487/RFC8999</span>, <time datetime="2021-05" class="refDate">May 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc8999">https://datatracker.ietf.org/doc/html/rfc8999</a>&gt;</span>. </dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>

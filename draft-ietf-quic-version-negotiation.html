@@ -1050,7 +1050,7 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Schinazi &amp; Rescorla</td>
-<td class="center">Expires 12 May 2022</td>
+<td class="center">Expires 23 May 2022</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1063,12 +1063,12 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 <dd class="internet-draft">draft-ietf-quic-version-negotiation-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2021-11-08" class="published">8 November 2021</time>
+<time datetime="2021-11-19" class="published">19 November 2021</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2022-05-12">12 May 2022</time></dd>
+<dd class="expires"><time datetime="2022-05-23">23 May 2022</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1122,7 +1122,7 @@ the negotiation can take place without incurring an extra round trip.<a href="#s
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 12 May 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 23 May 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1483,7 +1483,7 @@ server.<a href="#section-4.3-4" class="pilcrow">¶</a></p>
       </h2>
 <p id="section-5-1">During the handshake, endpoints will exchange Version Information, which is a
 blob of data that is defined below. In QUIC version 1, the Version Information
-is transmitted using a new transport parameter, <code>version_information</code>. The
+is transmitted using a new transport parameter, version_information. The
 contents of Version Information are shown below (using the notation from the
 "Notational Conventions" section of <span>[<a href="#QUIC" class="xref">QUIC</a>]</span>):<a href="#section-5-1" class="pilcrow">¶</a></p>
 <span id="name-version-information-format"></span><div id="fig-vi-format">
@@ -1511,15 +1511,15 @@ header that carries this data.<a href="#section-5-4.2.1" class="pilcrow">¶</a><
 </dd>
       <dd class="break"></dd>
 </dl>
-<p id="section-5-5">The contents of the <code>Other Versions</code> field depends on whether it is sent by the
+<p id="section-5-5">The contents of the Other Versions field depends on whether it is sent by the
 client or by the server.<a href="#section-5-5" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5-6">
         <dt id="section-5-6.1">
 Client-Sent Other Versions:  </dt>
         <dd style="margin-left: 1.5em" id="section-5-6.2">
-          <p id="section-5-6.2.1">When sent by a client, the <code>Other Versions</code> field lists all the versions that
+          <p id="section-5-6.2.1">When sent by a client, the Other Versions field lists all the versions that
 this first flight is compatible with, ordered by descending preference. Note
-that the version in the <code>Chosen Version</code> field MUST be included in this list to
+that the version in the Chosen Version field MUST be included in this list to
 allow the client to communicate the chosen version's preference. Note that this
 preference is only advisory, servers MAY choose to use their own preference
 instead.<a href="#section-5-6.2.1" class="pilcrow">¶</a></p>
@@ -1528,16 +1528,16 @@ instead.<a href="#section-5-6.2.1" class="pilcrow">¶</a></p>
 <dt id="section-5-6.3">
 Server-Sent Other Versions:  </dt>
         <dd style="margin-left: 1.5em" id="section-5-6.4">
-          <p id="section-5-6.4.1">When sent by a server, the <code>Other Versions</code> field lists all the
+          <p id="section-5-6.4.1">When sent by a server, the Other Versions field lists all the
 Fully-Deployed Versions of this server deployment, see <a href="#server-fleet" class="xref">Section 2</a>. Note
-that the version in the <code>Chosen Version</code> field is not necessarily included in
+that the version in the Chosen Version field is not necessarily included in
 this list, because the server operator could be in the process of removing
 support for this version. For the same reason, this field MAY be empty.<a href="#section-5-6.4.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
 <p id="section-5-7">Clients and servers MAY both include versions following the pattern
-<code>0x?a?a?a?a</code> in their <code>Other Versions</code> list. Those versions are reserved to
+0x?a?a?a?a in their Other Versions list. Those versions are reserved to
 exercise version negotiation (see the Versions section of <span>[<a href="#QUIC" class="xref">QUIC</a>]</span>), and will
 never be selected when choosing a version to use.<a href="#section-5-7" class="pilcrow">¶</a></p>
 </section>
@@ -1555,31 +1555,31 @@ that connection.<a href="#section-6-1" class="pilcrow">¶</a></p>
 handshake. If parsing the Version Information failed (for example, if it is too
 short or if its length is not divisible by four), then the endpoint MUST close
 the connection; if the connection was using QUIC version 1, that connection
-closure MUST use a transport error of type <code>TRANSPORT_PARAMETER_ERROR</code>.<a href="#section-6-2" class="pilcrow">¶</a></p>
+closure MUST use a transport error of type TRANSPORT_PARAMETER_ERROR.<a href="#section-6-2" class="pilcrow">¶</a></p>
 <p id="section-6-3">If the Version Information was missing, the endpoints MAY complete the
 handshake if they have reason to believe the peer might not support this
 extension. However, if a client has reacted to a Version Negotiation packet and
 the Version Information was missing, the client MUST close the connection; if
 the connection was using QUIC version 1, that connection closure MUST use a
-transport error of type <code>VERSION_NEGOTIATION_ERROR</code>.<a href="#section-6-3" class="pilcrow">¶</a></p>
+transport error of type VERSION_NEGOTIATION_ERROR.<a href="#section-6-3" class="pilcrow">¶</a></p>
 <p id="section-6-4">If the client received and acted on a Version Negotiation packet, the client MUST
-validate the server's <code>Other Versions</code> field.  The <code>Other Versions</code> field is
+validate the server's Other Versions field.  The Other Versions field is
 validated by confirming that the client would have attempted the same version
 with knowledge of the versions the server supports. That is, the client would
 have selected the same version if it received a Version Negotiation packet that
-listed the versions in the server's <code>Other Versions</code> field, plus the negotiated
+listed the versions in the server's Other Versions field, plus the negotiated
 version. If the client would have selected a different version, the client MUST
 close the connection; if the connection was using QUIC version 1, that
 connection closure MUST use a transport error of type
-<code>VERSION_NEGOTIATION_ERROR</code>. This connection closure prevents an attacker from
+VERSION_NEGOTIATION_ERROR. This connection closure prevents an attacker from
 being able to use forged Version Negotiation packets to force a version
 downgrade.<a href="#section-6-4" class="pilcrow">¶</a></p>
-<p id="section-6-5">This validation of <code>Other Versions</code> is not sufficient to prevent downgrade.
+<p id="section-6-5">This validation of Other Versions is not sufficient to prevent downgrade.
 Downgrade prevention also depends on the client ignoring Version Negotiation
 packets that contain the original version; see <a href="#incompat-vn" class="xref">Section 4.2</a>.<a href="#section-6-5" class="pilcrow">¶</a></p>
 <p id="section-6-6">After the process of version negotiation in this document completes, the
 version in use for the connection is the version that the server sent in the
-<code>Chosen Version</code> field of its Version Information. That remains true even if
+Chosen Version field of its Version Information. That remains true even if
 other versions were used in the Version field of long headers at any point in
 the lifetime of the connection; endpoints MUST NOT change the version that they
 consider to be in use based on the Version field of long headers as that field

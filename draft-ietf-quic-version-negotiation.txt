@@ -312,10 +312,10 @@ Table of Contents
    When the server can parse the client's first flight using the
    original version, it can extract the client's Version Information
    structure (see Section 5).  This contains the list of versions that
-   the client thinks its first flight is compatible with.
+   the client knows its first flight is compatible with.
 
    If the server supports one of the client's compatible versions, and
-   the server also believes that the original version is compatible with
+   the server also knows that the original version is compatible with
    this version, then the server converts the client's first flight to
    that version and replies to the client as if it had received the
    converted first flight.  The version used by the server in its reply
@@ -401,12 +401,11 @@ Table of Contents
    type TRANSPORT_PARAMETER_ERROR.
 
    If the Version Information was missing, the endpoints MAY complete
-   the handshake if they have reason to believe the peer might not
-   support this extension.  However, if a client has reacted to a
-   Version Negotiation packet and the Version Information was missing,
-   the client MUST close the connection; if the connection was using
-   QUIC version 1, that connection closure MUST use a transport error of
-   type VERSION_NEGOTIATION_ERROR.
+   the handshake.  However, if a client has reacted to a Version
+   Negotiation packet and the Version Information was missing, the
+   client MUST close the connection; if the connection was using QUIC
+   version 1, that connection closure MUST use a transport error of type
+   VERSION_NEGOTIATION_ERROR.
 
    If the client received and acted on a Version Negotiation packet, the
    client MUST validate the server's Other Versions field.  The Other
@@ -440,10 +439,10 @@ Table of Contents
 
    The client's first connection attempt SHOULD be made using the
    version that the server is most likely to support.  The client
-   selects the version it believes to be best supported from the
-   versions that are compatible with the client's most preferred
-   version.  Without additional information this could mean selecting
-   the oldest version that the client supports.
+   selects the version most likely to be supported from the versions
+   that are compatible with the client's most preferred version.
+   Without additional information this could mean selecting the oldest
+   version that the client supports.
 
 8.  Interaction with Retry
 
